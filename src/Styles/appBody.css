@@ -36,26 +36,6 @@
   transform: translateX(-4px);
 }
 
-.stories {
-  display: flex;
-  position: relative;
-}
-
-.stories .more-stories {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  background-color: #ffffff;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .stories .more-stories img {
   width: 20px;
   height: 20px;
