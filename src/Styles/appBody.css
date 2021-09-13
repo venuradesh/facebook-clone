@@ -1,0 +1,70 @@
+.app-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-body-left {
+  position: sticky;
+  top: 55px;
+  width: 22.5rem;
+  height: calc(100vh - 55px);
+  padding: 1.2rem 0rem;
+  overflow-y: hidden;
+}
+
+.app-body-left::-webkit-scrollbar {
+  width: 5px;
+}
+
+.app-body-left:hover,
+.app-body-left:focus,
+.app-body-left:active {
+  overflow-y: auto;
+  list-style-type: disc;
+}
+
+.app-body-left::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #bcc0c4;
+}
+
+.app-body-middle {
+  padding: 1.5rem 0.625rem;
+  width: 37.875rem;
+  min-height: calc(100vh - 55px);
+  overflow-y: auto;
+  transform: translateX(-4px);
+}
+
+.stories {
+  display: flex;
+  position: relative;
+}
+
+.stories .more-stories {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stories .more-stories img {
+  width: 20px;
+  height: 20px;
+}
+.app-body-right {
+  height: calc(100vh - 55px);
+  position: sticky;
+  top: 55px;
+  width: 21.625rem;
+  padding: 1.5rem 0.625rem;
+  overflow-y: auto;
+}
