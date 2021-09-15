@@ -4,7 +4,7 @@ import VideoCallIcon from "@material-ui/icons/VideoCall";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MoodIcon from "@material-ui/icons/Mood";
 
-const StatusPoster = () => {
+const StatusPoster = (props) => {
   const [input, setInput] = useState("");
   const [inputURL, setInputURL] = useState("");
 
@@ -12,8 +12,8 @@ const StatusPoster = () => {
     <Container>
       <HeaderTop>
         <div className="status">
-          <div className="profile"></div>
-          <input type="text" placeholder="Whats on your mind, Venura?" value={input} onChange={(e) => setInput(e.target.value)} />
+          <img className="profile" src={props.profilePhoto} alt="profilePic" />
+          <input type="text" placeholder={`Whats on your mind, ${props.profileName}?`} value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
         <div className="imageurl">
           <input type="text" placeholder="Image url (Optional)" value={inputURL} onChange={(e) => setInputURL(e.target.value)} />
@@ -68,11 +68,9 @@ const HeaderTop = styled.div`
       margin-right: 10px;
       width: 46px;
       height: 40px;
-      background-image: url("/images/profile.jpg");
       border-radius: 50%;
       background-size: cover;
       object-fit: cover;
-      background-position: center;
     }
 
     input {

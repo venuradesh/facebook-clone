@@ -5,8 +5,22 @@ import SubscriptionsOutlinedIcon from "@material-ui/icons/SubscriptionsOutlined"
 import HomeIcon from "@material-ui/icons/Home";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { logout } from "../features/User/UserSlice";
+import { auth } from "../firebase";
 
-const Header = () => {
+const Header = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    auth.signOut().then((result) => {
+      dispatch(logout());
+      history.push("/login");
+    });
+  };
+
   return (
     <Container>
       <Search>
@@ -40,8 +54,8 @@ const Header = () => {
       </OptionIcons>
       <RightOptions>
         <div className="profile right-menu">
-          <img src="/images/profile.jpg" />
-          <span>Venura</span>
+          <img src={props.profilePhoto} />
+          <span>{props.profileName}</span>
         </div>
         <div className="menu right-menu">
           <img src="/images/dots-menu.png" />
@@ -52,7 +66,7 @@ const Header = () => {
         <div className="bell right-menu">
           <img src="/images/bell.png" />
         </div>
-        <div className="drop-down right-menu">
+        <div className="drop-down right-menu" onClick={signOut}>
           <img src="/images/down-filled-triangular-arrow.png" />
         </div>
       </RightOptions>

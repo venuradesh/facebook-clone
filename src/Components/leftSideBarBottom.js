@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import LeftSideBar from "./LeftSideBar";
+import LeftSideBarTile from "./LeftSideBarTile";
 
 const LeftSideBarBottom = () => {
   return (
     <Container>
       <Separator></Separator>
       <h3>Your Shortcuts</h3>
-      <LeftSideBar src="/images/programmer.png" title="Full Stack Dev" profile="cover" />
+      <LeftSideBarTile src="/images/programmer.png" title="Full Stack Dev" profile="cover" />
       <Footer>
         <ul>
           <li>This</li>
