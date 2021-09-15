@@ -1,25 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import SubscriptionsOutlinedIcon from "@material-ui/icons/SubscriptionsOutlined";
 import HomeIcon from "@material-ui/icons/Home";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { logout } from "../features/User/UserSlice";
-import { auth } from "../firebase";
+import Logout from "./Logout";
 
 const Header = (props) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const signOut = () => {
-    auth.signOut().then((result) => {
-      dispatch(logout());
-      history.push("/login");
-    });
-  };
+  const [logoutBtn, setlogoutBtn] = useState(false);
 
   return (
     <Container>
@@ -66,9 +55,10 @@ const Header = (props) => {
         <div className="bell right-menu">
           <img src="/images/bell.png" />
         </div>
-        <div className="drop-down right-menu" onClick={signOut}>
+        <div className="drop-down right-menu" onClick={() => setlogoutBtn(true)}>
           <img src="/images/down-filled-triangular-arrow.png" />
         </div>
+        <Logout trigger={logoutBtn} className="logout-btn" />
       </RightOptions>
     </Container>
   );
@@ -186,6 +176,7 @@ const OptionIcons = styled.div`
 const RightOptions = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 
   .right-menu {
     display: flex;

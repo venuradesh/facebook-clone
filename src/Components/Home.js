@@ -18,17 +18,19 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot(
-      (snap) => {
-        setPosts(
-          snap.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        );
-      },
-      (err) => console.log(err)
-    );
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot(
+        (snap) => {
+          setPosts(
+            snap.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          );
+        },
+        (err) => console.log(err)
+      );
   }, []);
 
   return (
@@ -49,7 +51,6 @@ const Home = () => {
               <StatusPoster profilePhoto={prPhoto} profileName={userName} />
               {posts.map((post) => (
                 <>
-                  {console.log(post.data.timestamp.seconds)}
                   <Post profilePhoto={post.data.profilePhoto} profileName={post.data.profileName} time={post.data.timestamp} media={post.data.image} message={post.data.message} key={post.id} />
                 </>
               ))}

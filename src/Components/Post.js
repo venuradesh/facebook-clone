@@ -147,6 +147,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fcfdfa;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+  }
 `;
 
 const LikeCount = styled.div`

@@ -36,6 +36,15 @@
   transform: translateX(-4px);
 }
 
+.app-body-middle::-webkit-scrollbar {
+  width: 5px;
+}
+
+.app-body-middle::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #bcc0c4;
+}
+
 .stories .more-stories img {
   width: 20px;
   height: 20px;

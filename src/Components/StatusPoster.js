@@ -3,20 +3,41 @@ import styled from "styled-components";
 import VideoCallIcon from "@material-ui/icons/VideoCall";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MoodIcon from "@material-ui/icons/Mood";
+import { useSelector } from "react-redux";
+import { selectName, profilePhoto } from "../features/User/UserSlice";
+import db from "../firebase";
+import firebase from "firebase";
 
 const StatusPoster = (props) => {
+  const pName = useSelector(selectName);
+  const pPhoto = useSelector(profilePhoto);
   const [input, setInput] = useState("");
   const [inputURL, setInputURL] = useState("");
+
+  const onEnter = (e) => {
+    if (e.keyCode === 13) {
+      db.collection("posts").add({
+        message: input,
+        profileName: pName,
+        profilePhoto: pPhoto,
+        image: inputURL,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+
+      setInput("");
+      setInputURL("");
+    }
+  };
 
   return (
     <Container>
       <HeaderTop>
         <div className="status">
           <img className="profile" src={props.profilePhoto} alt="profilePic" />
-          <input type="text" placeholder={`Whats on your mind, ${props.profileName}?`} value={input} onChange={(e) => setInput(e.target.value)} />
+          <input type="text" placeholder={`Whats on your mind, ${props.profileName}?`} value={input} onChange={(e) => setInput(e.target.value)} onKeyUp={onEnter} />
         </div>
         <div className="imageurl">
-          <input type="text" placeholder="Image url (Optional)" value={inputURL} onChange={(e) => setInputURL(e.target.value)} />
+          <input type="text" placeholder="Image url (Optional)" value={inputURL} onChange={(e) => setInputURL(e.target.value)} onKeyUp={onEnter} />
         </div>
       </HeaderTop>
       <HeaderBottom>
