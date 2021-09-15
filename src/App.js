@@ -6,9 +6,11 @@ import StatusPoster from "./Components/StatusPoster.js";
 import Post from "./Components/Post";
 import StorySection from "./Components/StorySection";
 import Login from "./Components/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/User/UserSlice";
 
 function App() {
-  const user = "";
+  const user = useSelector(selectUser);
 
   return (
     <div className="App">

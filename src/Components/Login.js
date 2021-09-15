@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { auth, googleProvider } from "../firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, selectUser } from "../features/User/UserSlice";
 
 const Login = () => {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
   const signIn = () => {
     auth.signInWithPopup(googleProvider).then((result) => {
-      console.log(result.user);
+      console.log(result);
     });
   };
 
