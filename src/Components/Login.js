@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { auth, googleProvider } from "../firebase";
-import { useSelector, useDispatch } from "react-redux";
-import { setUser, selectUser } from "../features/User/UserSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/User/UserSlice";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(
+          login({
+            name: user.displayName,
+            email: user.email,
+            profilePhoto: user.photoURL,
+          })
+        );
+        history.push("/");
+      }
+    });
+  }, []);
 
   const signIn = () => {
     auth.signInWithPopup(googleProvider).then((result) => {
-      console.log(result);
+      dispatch(
+        login({
+          name: result.user.displayName,
+          email: result.user.email,
+          profilePhoto: result.user.photoURL,
+        })
+      );
+      history.push("/");
     });
   };
 

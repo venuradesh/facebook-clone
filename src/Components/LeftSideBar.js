@@ -3,10 +3,10 @@ import styled from "styled-components";
 import LeftSideBarTile from "./LeftSideBarTile";
 import LeftSideBarBottom from "./leftSideBarBottom";
 
-const LeftSideBar = () => {
+const LeftSideBar = (props) => {
   return (
     <Container>
-      <LeftSideBarTile src="/images/profile.jpg" title="Venura Warnasooriya" profile="profile" />
+      <LeftSideBarTile src={props.profilePhoto} title={props.profileName} profile="profile" />
       <LeftSideBarTile src="/images/friends.png" title="Friends" subtitle="2 requests" dots="dots" />
       <LeftSideBarTile src="/images/bookmark.png" title="Pages" subtitle="9+ new" dots="dots" />
       <LeftSideBarTile src="/images/multiple-users-silhouette.png" title="Groups" />

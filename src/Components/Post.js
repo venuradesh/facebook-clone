@@ -14,7 +14,7 @@ const Post = (props) => {
           <div className="text">
             <div className="main-heading">{props.profileName}</div>
             <div className="posted-on">
-              <div className="time">{props.time}</div>
+              <div className="time">{new Date(props.time?.toDate()).toUTCString()}</div>
               <PublicIcon className="public-icon" />
             </div>
           </div>
@@ -24,7 +24,7 @@ const Post = (props) => {
         </div>
       </Header>
       <Description>
-        <div className="caption">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum beatae blanditiis repudiandae eos sapiente vero alias eius vitae voluptatibus ratione soluta voluptates, repellat consequuntur quas dolorum tempore qui! Nobis, sunt magni ipsa quos voluptatibus cum repellendus officia maxime iure eum impedit, ab quasi sed? Eligendi officia sint recusandae quia iusto.</div>
+        <div className="caption">{props.message}</div>
       </Description>
       <Wrapper>
         <img src={props.media} />
