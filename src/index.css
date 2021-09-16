@@ -12,6 +12,10 @@ body {
   background-color: #d8dadf;
 }
 
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
